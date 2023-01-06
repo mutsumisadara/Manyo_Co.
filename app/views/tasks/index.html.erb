@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<h1>Task 一覧</h1>
+
+<tbody>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.to_do %></td>      
+      <td><%= link_to '詳細', task %></td>
+    </tr>
+</tbody>
+<% end %>
