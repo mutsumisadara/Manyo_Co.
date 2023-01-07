@@ -1,5 +1,14 @@
 <p id="notice"><%= notice %></p>
-<h1>Task 一覧</h1>
+<h1>タスク 一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>詳細</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
 <tbody>
   <% @tasks.each do |task| %>
@@ -7,6 +16,12 @@
       <td><%= task.title %></td>
       <td><%= task.to_do %></td>      
       <td><%= link_to '詳細', task %></td>
+      <td><%= link_to '編集', edit_task_path(task) %></td>
+      
     </tr>
+    <% end %>
 </tbody>
-<% end %>
+</table>
+
+<br>
+<%= link_to '新規作成', new_task_path %>

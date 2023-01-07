@@ -4,9 +4,37 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def new
+    @task = Task.new
+  end
+
   def show
     @task = Task.find(params[:id])
   end
+
+  def create
+    @task = Task.new(task_params)
+    if params[:back]
+      render :new
+    elsif @task.save
+      redirect_to tasks_path, notice: "新しいタスクを作成しました！"
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+    redirect_to @task, notice: "タスクを更新しました！"
+    end
+  end
+
+  
 
   private
   def set_task

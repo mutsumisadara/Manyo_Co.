@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
-<h1>Task 詳細</h1>
+<h1>タスク 詳細</h1>
+<p>
+  <strong>タイトル</strong>
+  <%= @task.title %>
+</p>
 
+<p>
+  <strong>内容</strong>
+  <%= @task.to_do %>
+</p>
+
+<%= link_to '編集', edit_task_path %>
 <%= link_to '戻る', tasks_path %>
