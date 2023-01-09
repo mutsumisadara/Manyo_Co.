@@ -1,9 +1,21 @@
 # README
-model : User
-column : id, name
+**User テーブル**
+| column | data |
+| ---- | ---- |
+| name | string |
 
-model : Task
-column : id, user_id, title, to_do, dead_line, priority, status, label
+**Task テーブル**
+| column | data |
+| ---- | ---- |
+| user_id | bigint |
+| title | string |
+| to_do | text |
+| dead_line | datetime |
+| priority | integer |
+| status | string |
 
-model : Label
-column : id, user_id, task_id
+**Label テーブル**
+| column | data |
+| ---- | ---- |
+| user_id | bignit |
+| task_id | bignit |
