@@ -1,24 +1,21 @@
 # README
+**User テーブル**
+| column | data |
+| ---- | ---- |
+| name | string |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Task テーブル**
+| column | data |
+| ---- | ---- |
+| user_id | bigint |
+| title | string |
+| to_do | text |
+| dead_line | datetime |
+| priority | integer |
+| status | string |
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Label テーブル**
+| column | data |
+| ---- | ---- |
+| user_id | bignit |
+| task_id | bignit |
