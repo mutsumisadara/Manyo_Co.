@@ -1,5 +1,7 @@
 ---
 ja:
+  view:
+    error_count: '件のエラーがあります。'
   activerecord:
     errors:
       messages:
