@@ -22,5 +22,4 @@ ActiveRecord::Schema.define(version: 2023_01_12_054211) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deadline", default: -> { "now()" }, null: false
   end
-
 end
