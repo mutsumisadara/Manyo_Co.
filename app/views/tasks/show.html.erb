@@ -12,7 +12,17 @@
 
 <p>
   <strong>終了期限</strong>
-  <%= @task.deadline %>
+  <%= @task.deadline.strftime("%Y-%m-%d %H:%M") %>
+</p>
+
+<p>
+  <strong>ステータス</strong>
+  <%= @task.status %>
+</p>
+
+<p>
+  <strong>優先順位</strong>
+  <%= @task.priority %>
 </p>
 
 <%= link_to '編集', edit_task_path %>

@@ -25,6 +25,16 @@
   <%= form.datetime_select :deadline %>
 </div>
 
+<div class="field">
+  <%= form.label :ステータス %>
+  <%= form.select :status, {'未着手':1, '着手中':2, '完了':3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+</div>
+
+<div class="field">
+  <%= form.label :優先順位 %>
+  <%= form.select :priority, Task.priorities.keys.to_a, {} %>
+</div>
+
 <div class="actions">
   <%= form.submit %>
 </div>
