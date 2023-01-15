@@ -3,11 +3,11 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: "DESC")
     # binding.irb
-   if params[:sort_deadline]
+    if params[:sort_deadline]
       @tasks = Task.all.order(deadline: "DESC")
-  #  else
-  #   @tasks = query
-   end
+    else params[:sort_priority]
+      @tasks = Task.all.order(priority: "ASC")
+    end
   end
 
   def new
