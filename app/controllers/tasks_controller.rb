@@ -53,12 +53,4 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:id, :title, :to_do, :deadline, :status, :priority)
   end
-
-  # def query
-  #   if params[:title].present? && params[:title][:to_do]
-  #     Task.where('name LIKE ?', "%#{params[:title][:to_do]}%")
-  #   else
-  #     Task.all
-  #   end
-  # end
 end
