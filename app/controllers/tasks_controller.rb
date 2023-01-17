@@ -2,12 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
   def index
-    @tasks = Task.all.order(created_at: "DESC")
-    # binding.irb
     if params[:sort_deadline]
       @tasks = Task.all.order(deadline: "DESC")
-    else params[:sort_priority]
+    elsif params[:sort_priority]
       @tasks = Task.all.order(priority: "ASC")
+      # binding.irb
+    else
+      @tasks = Task.all.order(created_at: "DESC")
     end
 
     if params[:task].present?
