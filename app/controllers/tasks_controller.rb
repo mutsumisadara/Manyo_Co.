@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+
   def index
     @tasks = Task.all.order(created_at: "DESC")
     # binding.irb
@@ -7,6 +8,19 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(deadline: "DESC")
     else params[:sort_priority]
       @tasks = Task.all.order(priority: "ASC")
+    end
+
+    if params[:task].present?
+      if params[:task][:title].present? && params[:task][:status].present?
+        @tasks = Task.scope_title(params[:task][:title])
+        @tasks = Task.scope_status(params[:task][:status])
+      elsif params[:task][:title].present?
+        @tasks = Task.scope_title(params[:task][:title])
+      elsif params[:task][:status].present?
+        @tasks = Task.scope_status(params[:task][:status])
+      # else @tasks.count == 0
+      #   flash.now[:alert] = "見つかりませんでした。"
+      end
     end
   end
 

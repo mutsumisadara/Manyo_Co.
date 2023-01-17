@@ -27,12 +27,12 @@
 
 <div class="field">
   <%= form.label :ステータス %>
-  <%= form.select :status, {'未着手':1, '着手中':2, '完了':3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+  <%= form.select :status, Task.statuses.keys.to_a, include_blank: '選択してください', class: 'form-control', required: true %>
 </div>
 
 <div class="field">
   <%= form.label :優先順位 %>
-  <%= form.select :priority, Task.priorities.keys.to_a, {} %>
+  <%= form.select :priority, Task.priorities.keys.to_a, include_blank: '選択してください', class: 'form-control', required: true %>
 </div>
 
 <div class="actions">
