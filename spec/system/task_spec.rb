@@ -50,6 +50,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         # third_task = FactoryBot.create(:third_task)
         visit tasks_path
         click_link '終了期限でソート'
+        sleep(1)
         task_list = all('.task_row')   
         expect(task_list[0]).to have_content 'タイトル1'
         expect(task_list[1]).to have_content 'タイトル2'

@@ -3,22 +3,22 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_deadline]
-      @tasks = Task.all.order(deadline: "DESC")
+      @tasks = Task.all.order(deadline: "DESC").page(params[:page])
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: "ASC")
+      @tasks = Task.all.order(priority: "ASC").page(params[:page])
       # binding.irb
     else
-      @tasks = Task.all.order(created_at: "DESC")
+      @tasks = Task.all.order(created_at: "DESC").page(params[:page])
     end
 
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = Task.scope_title(params[:task][:title])
-        @tasks = Task.scope_status(params[:task][:status])
+        @tasks = Task.scope_title(params[:task][:title]).page(params[:page])
+        @tasks = Task.scope_status(params[:task][:status]).page(params[:page])
       elsif params[:task][:title].present?
-        @tasks = Task.scope_title(params[:task][:title])
+        @tasks = Task.scope_title(params[:task][:title]).page(params[:page])
       elsif params[:task][:status].present?
-        @tasks = Task.scope_status(params[:task][:status])
+        @tasks = Task.scope_status(params[:task][:status]).page(params[:page])
       # else @tasks.count == 0
       #   flash.now[:alert] = "見つかりませんでした。"
       end
