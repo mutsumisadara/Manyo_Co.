@@ -73,9 +73,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タイトルであいまい検索をした場合' do
       example "検索キーワードを含むタスクで絞り込まれる" do
         visit tasks_path
-        fill_in 'task_title', with: 'タイトル1' # タスクの検索欄に検索ワードを入力する (例: task)
-        # select 'task_status'
-        click_button '検索'# 検索ボタンを押す
+        fill_in 'task_title', with: 'タイトル1'
+        click_button '検索'
         expect(page).to have_content 'タイトル1'
       end
     end
@@ -85,8 +84,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         select '未着手', from: 'task[status]'
         click_button '検索'
         expect(page).to have_content '未着手'
-        # ここに実装する
-        # プルダウンを選択する「select」について調べてみること
       end
     end
     context 'タイトルのあいまい検索とステータス検索をした場合' do
@@ -96,7 +93,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         select '未着手', from: 'task[status]'
         click_button '検索'
         expect(page).to have_content '未着手'
-        # ここに実装する
       end
     end
   end
