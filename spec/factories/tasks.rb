@@ -1,19 +1,23 @@
 FactoryBot.define do
   factory :task do
     title { 'タイトル1' }
-    to_do { 'コンテント1' }
-    deadline { DateTime.now }
+    to_do { '内容1' }
+    # deadline { DateTime.now }
+    deadline { 2023-01-02 }
+    # status {}
   end
 
   factory :second_task, class: Task do
     title { 'タイトル2' }
-    to_do { 'コンテント2' }
-    deadline { DateTime.tomorrow }
+    to_do { '内容2' }
+    # deadline { DateTime.tomorrow }
+    deadline { 2023-01-03 }
   end
 
   factory :third_task, class: Task do
     title { 'タイトル3' }
-    to_do { 'コンテント3' }
-    deadline { DateTime.yesterday }
+    to_do { '内容3' }
+    # deadline { DateTime.yesterday }
+    deadline { 2023-01-01 }
   end
 end
