@@ -17,15 +17,20 @@
 
  .btn {
     background-color: pink;
-    color: white;
+    color: black;
   }
 
-  .outer{
+  .outer {
     text-align: center;
     background-color: pink;
   }
-  .inner{
+  .inner {
     display: inline-block;
     text-align: left;
   }
+
+  .pagination li a {
+    background-color: pink;
+    color: black;
+ }
  
