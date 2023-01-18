@@ -6,4 +6,5 @@ class Task < ApplicationRecord
     # scope :scope_both, -> (title, status){ where('title LIKE ?', "%#{title}%").where('status: status', "#{status}")}
     scope :scope_title, -> (title){ where('title LIKE ?', "%#{title}%") }
     scope :scope_status, -> (status){ where(status: status) }
+    belongs_to :user
 end
