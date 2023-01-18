@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
+  
   def new
     @user = User.new #まずはuser modelの新しいインスタンス作成。
   end
