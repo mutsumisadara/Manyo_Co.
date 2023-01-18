@@ -1,6 +1,12 @@
 ---
 ja:
   view:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
     error_count: '件のエラーがあります。'
   activerecord:
     errors:
