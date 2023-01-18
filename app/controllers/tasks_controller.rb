@@ -1,8 +1,28 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+
   def index
-    @tasks = Task.all
-    @tasks = Task.order(id: :DESC)
+    if params[:sort_deadline]
+      @tasks = Task.all.order(deadline: "DESC").page(params[:page])
+    elsif params[:sort_priority]
+      @tasks = Task.all.order(priority: "ASC").page(params[:page])
+      # binding.irb
+    else
+      @tasks = Task.all.order(created_at: "DESC").page(params[:page])
+    end
+
+    if params[:task].present?
+      if params[:task][:title].present? && params[:task][:status].present?
+        @tasks = Task.scope_title(params[:task][:title]).page(params[:page])
+        @tasks = Task.scope_status(params[:task][:status]).page(params[:page])
+      elsif params[:task][:title].present?
+        @tasks = Task.scope_title(params[:task][:title]).page(params[:page])
+      elsif params[:task][:status].present?
+        @tasks = Task.scope_status(params[:task][:status]).page(params[:page])
+      # else @tasks.count == 0
+      #   flash.now[:alert] = "見つかりませんでした。"
+      end
+    end
   end
 
   def new
@@ -46,6 +66,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:id, :title, :to_do)
+    params.require(:task).permit(:id, :title, :to_do, :deadline, :status, :priority)
   end
 end

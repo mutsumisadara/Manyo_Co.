@@ -20,6 +20,21 @@
   <%= form.text_field :to_do %>
 </div>
 
+<div class="field">
+  <%= form.label :終了期限 %>
+  <%= form.date_field :deadline %>
+</div>
+
+<div class="field">
+  <%= form.label :ステータス %>
+  <%= form.select :status, Task.statuses.keys.to_a, include_blank: '選択してください', class: 'form-control', required: true %>
+</div>
+
+<div class="field">
+  <%= form.label :優先順位 %>
+  <%= form.select :priority, Task.priorities.keys.to_a, include_blank: '選択してください', class: 'form-control', required: true %>
+</div>
+
 <div class="actions">
   <%= form.submit %>
 </div>

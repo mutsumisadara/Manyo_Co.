@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ .btn {
+    background-color: pink;
+    color: black;
+  }
+
+  .outer {
+    text-align: center;
+    background-color: pink;
+  }
+  .inner {
+    display: inline-block;
+    text-align: left;
+  }
+
+  .pagination li a {
+    background-color: pink;
+    color: black;
+ }
+ 
