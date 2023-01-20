@@ -1,14 +1,13 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
 
   def index
     if params[:sort_deadline]
-      @tasks = Task.all.order(deadline: "DESC").page(params[:page])
+      @tasks = @current_user.tasks.order(deadline: "DESC").page(params[:page])
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: "ASC").page(params[:page])
+      @tasks = @current_user.tasks.order(priority: "ASC").page(params[:page])
       # binding.irb
     else
-      @tasks = Task.all.order(created_at: "DESC").page(params[:page])
+      @tasks = @current_user.tasks.order(created_at: "DESC").page(params[:page])
     end
 
     if params[:task].present?
@@ -35,6 +34,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = @current_user.id
     if params[:back]
       render :new
     elsif @task.save
