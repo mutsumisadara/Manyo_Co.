@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :show, :destroy]
   resources :users, only: [:new, :create, :show] # 追加でrails routes確認
   resources :tasks
+  namespace :admin do
+    resources :users # , only: [:new, :create, :show, :edit, :update, :destroy]
+  end
 end
