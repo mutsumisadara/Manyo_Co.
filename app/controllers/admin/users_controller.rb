@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
 
   def index
-    if @current_user.admin?
+    if @current_user.admin == "管理者"
+      # @current_user.admin?
       @user = User.all
       @tasks = Task.all
     else
@@ -33,7 +34,8 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to admin_users_path, notice: "ユーザーを削除しました！"
+      redirect_to admin_users_path
+      flash[:notice] = "ユーザーを削除しました！"
     end
   end
 
