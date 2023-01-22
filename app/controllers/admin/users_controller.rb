@@ -1,7 +1,12 @@
 class Admin::UsersController < ApplicationController
+
     def index
-        @user = User.all
-        @tasks = Task.all
+        if @current_user.admin?
+          @user = User.all
+          @tasks = Task.all
+        else
+          redirect_to tasks_path, notice: 'アクセス権限がありません'
+        end
     end
 
     def new
@@ -37,4 +42,8 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+
+    # def require_admin
+    #     redirect_to root_path unless current_user.admin?
+    # end
 end

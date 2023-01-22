@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id]) # useridがストパラで送られてくる表示するuseridを取得
-    @task = Task.find(params[:id])
+    # @task = Task.find(params[:id])
     # binding.irb
     # @task = @current_user.tasks.order(created_at: "DESC").page(params[:page])
     # redirect_to tasks_path
