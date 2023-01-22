@@ -5,4 +5,11 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password # パスワードをハッシュ化し、DB内password_digestに保存してくれるので簡単安心。
   validates :password, length: { minimum: 5 }
+  enum admin: { 一般ユーザー: false, 管理者: true}
+  # before_destroy :admin_must_exist
+
+
+  # def admin_must_exist
+  #   throw(:abort) if (user.admin).empty?
+  # end
 end

@@ -1,8 +1,6 @@
 <div class="outer">
   <div class="inner">
 
-<p id="notice"><%= notice %></p>
-
 <%= form_with(model: [ :admin, @user ], local: true) do |f| %>
     
   <% if @user.errors.any? %>
@@ -16,19 +14,34 @@
     </div>
   <% end %>
 
+  <div class="field">
   <%= f.label :名前 %>
   <%= f.text_field :name %>
+  </div>
 
+  <div class="field">
   <%= f.label :Eメール %>
   <%= f.email_field :email %>
+  </div>
 
+  <div class="field">
   <%= f.label :パスワード %>
   <%= f.password_field :password %>
+  </div>
 
+  <div class="field">
   <%= f.label :パスワード確認 %>
   <%= f.password_field :password_confirmation %>
+  </div>
 
+  <div class="field">
+  <%= f.label :管理者権限 %>
+  <%= f.select :admin, User.admins.keys.to_a, include_blank: '選択してください', class: 'form-control', required: true %>
+  </div>
+
+  <div class="field">
   <%= f.submit "アカウントを更新する", class: 'btn btn-light' %>
+  </div>
 <% end %>
 
   </div>

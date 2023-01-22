@@ -17,6 +17,7 @@
     <% if logged_in? %>
       <%= link_to "マイページ", user_path(current_user.id) %>
       <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <%= link_to "管理者画面", admin_users_path %>
     <% else %>
       <%= link_to "新規登録", new_user_path %>
       <%= link_to "ログイン", new_session_path %>
