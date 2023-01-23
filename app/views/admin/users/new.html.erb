@@ -16,6 +16,11 @@
   <%= f.label :パスワード確認 %>
   <%= f.password_field :password_confirmation %>
 
+  <div class="field">
+  <%= f.label :管理者権限 %>
+  <%= f.select :admin, User.admins.keys.to_a, include_blank: '選択してください', class: 'form-control', required: true %>
+  </div>
+
   <%= f.submit "アカウントを作成する", class: 'btn btn-light' %>
 <% end %>
 
