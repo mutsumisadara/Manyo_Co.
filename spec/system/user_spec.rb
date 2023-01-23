@@ -36,16 +36,13 @@ RSpec.describe User, type: :system do
     end
     context '一般ユーザーが他人の詳細画面に飛ぼうとした場合' do
       example 'タスク一覧画面に遷移する' do
-        user = FactoryBot.create(:user)
+        second_user = FactoryBot.create(:second_user)
         visit new_session_path
-        fill_in 'session_email', with: user.email
-        fill_in 'session_password', with: user.password
+        fill_in 'session_email', with: second_user.email
+        fill_in 'session_password', with: second_user.password
         click_button 'ログイン'
         visit user_path(User.first)
-        # visit user_path(User.last)
-        # visit user_path(User, :count).by(1)
-        # expect(page).to eq tasks_path
-        expect(current_path).to eq user_path(User.first)
+        expect(current_path).to eq tasks_path
       end
     end
     context 'セッション機能のテスト' do

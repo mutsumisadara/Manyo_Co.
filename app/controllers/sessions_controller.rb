@@ -2,6 +2,11 @@ class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   
   def new
+    if current_user
+      redirect_to user_path(@current_user.id)
+    else
+      @user = User.new
+    end
   end
 
   def create # 送られてきたemailを元にfindbyでDBからuserを取り出す。authenticateでemailとpassword正しいかみてる
