@@ -3,8 +3,10 @@ class Admin::UsersController < ApplicationController
   def index
     if @current_user.admin == "管理者"
       # @current_user.admin?
-      @user = User.all
-      @tasks = Task.all
+      @user = User.select(:id, :name, :email, :password_digest, :created_at, :updated_at, :admin)
+      @tasks = Task.select(:id, :title, :to_do, :created_at, :updated_at, :deadline, :status, :priority, :user_id)
+      # @user = User.all.includes(:user)
+      # @tasks = Task.all
     else
       redirect_to tasks_path, notice: 'アクセス権限がありません'
     end
