@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   
   def new
-    if current_user
-      redirect_to user_path(@current_user.id) #(@current_user.id)
+    if @current_user
+      redirect_to user_path(@current_user.id)
     else
       @user = User.new # user modelの新しいインスタンス作成。
     end
@@ -21,11 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id]) # useridがストパラで送られてくる表示するuseridを取得
-    redirect_to tasks_path unless current_user.id == @user.id
-    # @task = Task.find(params[:id])
-    # binding.irb
-    # @task = @current_user.tasks.order(created_at: "DESC").page(params[:page])
-    # redirect_to tasks_path
+    redirect_to tasks_path unless @current_user == @user
   end
 
   private
