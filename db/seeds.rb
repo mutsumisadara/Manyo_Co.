@@ -9,7 +9,7 @@ end
 
 User.create!(
     name: 'admin',
-    email: 'admin1@gmail.com',
+    email: 'admin007@gmail.com',
     password: 'adminuser',
     password_confirmation: 'adminuser',
     admin: true
