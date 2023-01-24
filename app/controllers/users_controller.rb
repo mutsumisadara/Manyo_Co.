@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   
   def new
-    if @current_user
+    if current_user
       redirect_to user_path(@current_user.id)
     else
       @user = User.new # user modelの新しいインスタンス作成。
