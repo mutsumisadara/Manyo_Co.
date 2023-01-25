@@ -11,7 +11,9 @@ class User < ApplicationRecord
 
   private
   def admin_must_exist
-    if User.where(admin: true).count == 1
+    admin_user = User.where(admin: true)
+    if self.admin? && admin_user == 1
+    # if User.where(admin: true).count == 1
     # if admin? == 1 削除される
     # if User.admins.count == 1　削除される
     # if User.exists?(admin: true) && self.admin == true 削除される
