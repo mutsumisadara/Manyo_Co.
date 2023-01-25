@@ -1,8 +1,10 @@
 require 'rails_helper'
 require 'date'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task) { FactoryBot.create(:task, title: 'タイトル1', to_do: '内容1', deadline: 'DateTime.now') }
-  let!(:second_task) { FactoryBot.create(:second_task,title: 'タイトル2', to_do: '内容2', deadline: 'DateTime.tomorrow') }
+  # let!(:task) { FactoryBot.create(:task, title: 'タイトル1', to_do: '内容1', deadline: 'DateTime.now') }
+  # let!(:second_task) { FactoryBot.create(:second_task,title: 'タイトル2', to_do: '内容2', deadline: 'DateTime.tomorrow') }
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:task) { FactoryBot.create(:task, user: user) }
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -80,7 +82,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
     context 'ステータス検索をした場合' do
-      it "ステータスに完全一致するタスクが絞り込まれる" do
+      example "ステータスに完全一致するタスクが絞り込まれる" do
         visit tasks_path
         select '未着手', from: 'task[status]'
         click_button '検索'
@@ -88,7 +90,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
     context 'タイトルのあいまい検索とステータス検索をした場合' do
-      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+      example "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
         visit tasks_path
         fill_in 'task_title', with: 'タイトル1'
         select '未着手', from: 'task[status]'
