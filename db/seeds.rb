@@ -1,8 +1,8 @@
 2.times do |n|
     User.create!(
-        name: "mutsumisadaraaa#{n + 1}",
-        email: "mutsumisadaraaa#{n + 1}@gmail.com",
-        password: "mutsumisadaraaa#{n + 1}",
+        name: "mutsumisadara#{n + 1}",
+        email: "mutsumisadara#{n + 1}@gmail.com",
+        password: "mutsumisadara#{n + 1}",
         password_confirmation: "mutsumisadara#{n + 1}"
     )
 end
