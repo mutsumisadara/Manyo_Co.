@@ -18,8 +18,6 @@ class TasksController < ApplicationController
         @tasks = @current_user.tasks.scope_title(params[:task][:title]).page(params[:page])
       elsif params[:task][:status].present?
         @tasks = @current_user.tasks.scope_status(params[:task][:status]).page(params[:page])
-      # else @tasks.count == 0
-      #   flash.now[:alert] = "見つかりませんでした。"
       end
     end
   end
@@ -68,6 +66,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:id, :title, :to_do, :deadline, :status, :priority)
+    params.require(:task).permit(:id, :title, :to_do, :deadline, :status, :priority, label_ids: [] )
   end
 end

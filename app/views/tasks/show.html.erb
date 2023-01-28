@@ -33,6 +33,11 @@
   <%= @task.priority %>
 </p>
 
+<p>
+  <strong>ラベル</strong>
+  <%= @task.label_ids %>
+</p>
+
 <%= link_to '編集', edit_task_path %>
 <%= link_to '戻る', tasks_path %>
 
