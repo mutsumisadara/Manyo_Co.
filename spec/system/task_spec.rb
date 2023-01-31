@@ -1,8 +1,7 @@
 require 'rails_helper'
 require 'date'
 RSpec.describe 'タスク管理機能', type: :system do
-  # let!(:task) { FactoryBot.create(:task, title: 'タイトル1', to_do: '内容1', deadline: 'DateTime.now') }
-  # let!(:second_task) { FactoryBot.create(:second_task,title: 'タイトル2', to_do: '内容2', deadline: 'DateTime.tomorrow') }
+
   let!(:user) { FactoryBot.create(:user) }
   let!(:task) { FactoryBot.create(:task, user: user) }
 
