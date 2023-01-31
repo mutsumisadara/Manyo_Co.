@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :task do
     title { 'タイトル1' }
     to_do { '内容1' }
-    # deadline { DateTime.now }
     deadline { 2023-01-02 }
     user
   end
@@ -10,7 +9,6 @@ FactoryBot.define do
   factory :second_task, class: Task do
     title { 'タイトル2' }
     to_do { '内容2' }
-    # deadline { DateTime.tomorrow }
     deadline { 2023-01-03 }
     user
   end
@@ -18,7 +16,6 @@ FactoryBot.define do
   factory :third_task, class: Task do
     title { 'タイトル3' }
     to_do { '内容3' }
-    # deadline { DateTime.yesterday }
     deadline { 2023-01-01 }
     user
   end

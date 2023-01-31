@@ -5,23 +5,25 @@ class TasksController < ApplicationController
       @tasks = @current_user.tasks.order(deadline: "DESC").page(params[:page])
     elsif params[:sort_priority]
       @tasks = @current_user.tasks.order(priority: "ASC").page(params[:page])
-      # binding.irb
     else
       @tasks = @current_user.tasks.order(created_at: "DESC").page(params[:page])
     end
 
     if params[:task].present?
+      # binding.pry
       if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = @current_user.tasks.scope_title(params[:task][:title]).page(params[:page])
-        @tasks = @current_user.tasks.scope_status(params[:task][:status]).page(params[:page])
+        @tasks = @current_user.tasks.scope_title(params[:task][:title])
+        @tasks = @current_user.tasks.scope_status(params[:task][:status])
       elsif params[:task][:title].present?
-        @tasks = @current_user.tasks.scope_title(params[:task][:title]).page(params[:page])
+        @tasks = @current_user.tasks.scope_title(params[:task][:title])
       elsif params[:task][:status].present?
-        @tasks = @current_user.tasks.scope_status(params[:task][:status]).page(params[:page])
-      # else @tasks.count == 0
-      #   flash.now[:alert] = "見つかりませんでした。"
+        @tasks = @current_user.tasks.scope_status(params[:task][:status])
+      elsif params[:task][:label_ids].present?
+        @tasks = @current_user.tasks.scope_label(params[:task][:label_ids])
+        # binding.pry
       end
     end
+    @tasks = @tasks.page(params[:page]).per(3)
   end
 
   def new
@@ -68,6 +70,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:id, :title, :to_do, :deadline, :status, :priority)
+    params.require(:task).permit(:id, :title, :to_do, :deadline, :status, :priority, label_ids: [] )
   end
 end

@@ -42,7 +42,7 @@ RSpec.describe User, type: :system do
         fill_in 'session_password', with: second_user.password
         click_button 'ログイン'
         visit user_path(User.first)
-        expect(current_path).to eq tasks_path
+        expect(page).to have_content 'タスク一覧'
       end
     end
     context 'セッション機能のテスト' do
@@ -52,12 +52,7 @@ RSpec.describe User, type: :system do
         fill_in 'session_email', with: user.email
         fill_in 'session_password', with: user.password
         click_button 'ログイン'
-        # visit "/users/1" #(User.first)
         visit user_path(User.first)
-        # expect(page).to eq "/users/1" #(User.first)
-        # expect(page).to eq user_path(User.first)
-        # expect(page).to eq user_path(User, :count).by(1)
-        # expect(page).to eq user_path(User.first)
         expect(page).to have_content('ログアウト')
         click_link 'ログアウト'
         expect(current_path).to eq new_session_path

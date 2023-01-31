@@ -28,4 +28,5 @@
 5. Node.jsのbuildpack追加 $heroku buildpacks:add --index 1 heroku/nodejs
 6. Herokuへデプロイ $git push heroku ブランチ名:main
 7. DBの移行 $heroku run rails db:migrate
-8. アプリケーションにアクセス $heroku open
+8. seedデータあれば $heroku run rails db:seed
+9. アプリケーションにアクセス $heroku open
